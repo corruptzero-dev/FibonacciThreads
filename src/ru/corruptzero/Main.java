@@ -1,17 +1,13 @@
 package ru.corruptzero;
 
-import javax.swing.*;
-import java.awt.*;
-
 import com.github.sh0nk.matplotlib4j.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 
-public class Main extends JPanel {
+public class Main{
 
     public static void main(String[] args) throws InterruptedException, PythonExecutionException, IOException {
         /* Вычислить и вывести числа фибоначчи от 1 до N.
@@ -34,16 +30,15 @@ public class Main extends JPanel {
             thread.start();
             thread.join();
         }
-        List<Long> list = new ArrayList<Long>(Storage.getInstance().getMsMap().values());
+        List<Long> list = new ArrayList<>(Storage.getInstance().getMsMap().values());
         Plot plt = Plot.create();
         plt.plot()
                 .add(list)
-                .label("label")
-                .linestyle("--");
-        plt.xlabel("xlabel");
-        plt.ylabel("ylabel");
-        plt.text(0.5, 0.2, "text");
-        plt.title("Title!");
+                .label("Recursive")
+                .linestyle("-");
+        plt.xlabel("Threads");
+        plt.ylabel("Time (ms)");
+        plt.title("Execution time vs. the number of threads");
         plt.legend();
         plt.show();
 
